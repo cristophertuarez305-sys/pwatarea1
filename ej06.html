@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 6: Diseño de caja</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #8248ad;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .caja {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #ca1f4f;
+      border: 3px solid #000000;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .caja h2 {
+      color: #05ee99;
+      margin-top: 0;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caja">
+    <h2>slider</h2>
+    <p>Mueve el control para cambiar el valor.</p>
+    <input type="range" id="slider" min="0" max="100" value="50">
+    <p>Valor: <strong id="valor">50</strong></p>
+  </div>
+
+  <script>
+    var slider = document.getElementById("slider");
+    var valor = document.getElementById("valor");
+    slider.oninput = function () {
+      valor.textContent = slider.value;
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 9: Galería de imágenes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+    }
+    nav {
+      background-color: #1a4d8f;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav a {
+      display: block;
+      padding: 15px 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background-color: #2f6fc4;
+    }
+    nav a:active,
+    nav a:focus {
+      background-color: #e67e22;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      color: #1a4d8f;
+    }
+
+    /* Galería */
+    .galeria {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .galeria img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #1a4d8f;
+      cursor: pointer;
+    }
+    .galeria img:hover {
+      opacity: 0.8;
+    }
+
+    #ventana {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(50, 141, 121, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    #ventana img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 8px;
+    }
+    #cerrar {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #e90404;
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+      nav ul {
+        flex-direction: column;
+      }
+      .galeria img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="ej05.html">Mi biografía</a></li>
+      <li><a href="https://t.me/DCTV12" target="_blank">Telegram</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Mis pasatiempos</h1>
+    <p>Me gusta hacer ejercicio y ver fútbol. Haz clic en una imagen para verla en grande.</p>
+
+    <div class="galeria">
+      <img src="img/foto1.jpg" alt="Hacer ejercicio">
+      <img src="img/foto2.jpg" alt="Fútbol">
+    </div>
+  </main>
+
+  <!-- Ventana emergente -->
+  <div id="ventana">
+    <span id="cerrar">&times;</span>
+    <img id="imagenGrande" src="" alt="">
+  </div>
+
+  <script>
+    var ventana = document.getElementById("ventana");
+    var imagenGrande = document.getElementById("imagenGrande");
+    var fotos = document.querySelectorAll(".galeria img");
+
+    for (var i = 0; i < fotos.length; i++) {
+      fotos[i].onclick = function () {
+        imagenGrande.src = this.src;
+        imagenGrande.alt = this.alt;
+        ventana.style.display = "flex";
+      };
+    }
+
+    document.getElementById("cerrar").onclick = function () {
+      ventana.style.display = "none";
+    };
+
+    ventana.onclick = function (e) {
+      if (e.target === ventana) {
+        ventana.style.display = "none";
+      }
+    };
+  </script>
+
+</body>
+</html>
